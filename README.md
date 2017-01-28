@@ -21,7 +21,7 @@ If you are looking to create your own custom Tumblr theme, check out the Tumblr 
 - If you like what you see, click the `Save` button near the top of the page (this button only appears after you update the preview).
 - If you don't like what you see, continue to make edits to the theme. 
 - To undo all changes, before saving, click the `Tumblr back arrow` (in the top left of the page, not the back button on your browser) to go back to the previous page. Confirm that you want to close without saving and/or exit without saving.
-- To preserve your original theme (before making any edits) copy and save the contents of the editing area to a file using a plain text editor. That way you have a copy of the original to revert back to in case anything goes wrong. 
+- To preserve your original theme (before making any edits) copy and save the contents of the editing area to a file using a plain text editor. That way you have a copy of the original to revert back to in case anything goes wrong. Tumblr also stores the [last 20 versions](https://staff.tumblr.com/post/380346543/theme-recovery) of your theme edits so you can revert your theme back to one of those.
 
 ### What is a plain text editor?
 A plain text editor is an application that lets you edit text but does not add additional markup that a typical word processor application does. They come standard with most computers. On Mac the application is called **TextEdit** and on Windows the application is called **Notepad**.
