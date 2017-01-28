@@ -75,7 +75,7 @@ for navbar text, on top of yellow background
 */
 
 /******************************************
-ANIMATIONS
+ANIMATIONS - FOR TOP MENU NAVIGATION
 ******************************************/
 
 .animated {
@@ -162,12 +162,9 @@ GENERAL
 }
 
 body {
-	/*font-family: 'Railway', sans-serif;*/
-	/*font-family: "Lato",sans-serif;*/
 	font-family: "Avenir Next","Avenir","Helvetica Neue",Helvetica,Arial,sans-serif;
 	font-size: 1em;
 	background-color: #F7F8FA;
-	/*color: #454544;*/
 }
 
 
@@ -227,12 +224,7 @@ CENTER AREA - TUMBLR SPECIFIC
     margin: 200px auto 300px 10%;
 }
 
-
 /***** posts display area *****/
-
-.post-preview-container {
-    /*border: 2px solid green;*/
-}
 
 .post-left-div {
     width: 160px;
@@ -244,27 +236,6 @@ CENTER AREA - TUMBLR SPECIFIC
     margin-left: 200px;
     padding-top: 50px;
 }
-
-/*ul, li {
-    list-style: none;
-}
-
-.ul-bullet-item {
-    list-style-type: disc;
-}
-
-.ol-numbered-item {
-    list-style-type: decimal;
-}
-
-.ul-bullet-item,
-.ol-numbered-item {
-    display: list-item;
-    margin-left: 40px;
-    margin-right: 40px;
-    padding-bottom: 5px;
-}*/
-
 
 /***** date in circle on left of each post *****/
 
@@ -294,9 +265,7 @@ div.month-year-offset {
     padding-top: 5px;
 }
 
- 
-
-/***** bottom of each post *****/
+/***** below each post *****/
 
 span.tag-names {
     font-size: .7em;
@@ -372,6 +341,12 @@ img {
     max-width: 100%;
 }
 
+li,
+blockquote {
+    margin-left: 40px;
+    margin-right: 40px;
+    padding-bottom: 5px;
+}
 
 
 /***** LINKS *****/
@@ -534,108 +509,104 @@ MEDIA QUERIES - FOOTER
     <div>
     {block:Posts} <!-- Listing of ALL posts -->
         
-        <div class="post-preview-container">
+        <div class="post-left-div">
+            {block:Date} <!-- Date of the post -->
+                <div class="time-date-circle">
+                    <div class="day-offset">{DayOfMonthWithZero}</div>
+                    <div class="month-year-offset">{ShortMonth} {Year}</div>
+                 </div>
+            {/block:Date}
+        </div>
 
-            <div class="post-left-div">
-                {block:Date} <!-- Date of the post -->
-                    <div class="time-date-circle">
-                        <div class="day-offset">{DayOfMonthWithZero}</div>
-                        <div class="month-year-offset">{ShortMonth} {Year}</div>
-                     </div>
+        <div class="post-right-div">
+        
+            <div>
+                {block:Title} <!-- Title of the post -->
+                <!-- with link to full post wrapping title -->
+                    <h3><a href="{Permalink}" class="title-link">{Title}</a></h3> 
+                {/block:Title}
+            
+                {block:RebloggedFrom}<!-- block for a "REBLOG" post -->
+                    <p>Reblogged from: {ReblogParentName}</p>
+                    <p>Original post by: {ReblogRootName}</p>
+                {/block:RebloggedFrom}
+            </div>
+
+            {block:Text} <!-- block for a "TEXT" post -->
+                <div>
+                    {Body} <!-- Content / body of the post / preview only. -->
+                     <p class="read_more_lindsay_override">
+                        {block:More}
+                            <a href="{Permalink}">Continue Reading <i class="chevron circle right icon"></i></a>
+                        {/block:More}
+                    </p>
+                </div>
+            {/block:Text}
+            
+            {block:Video} <!-- block for a "VIDEO" post -->
+                <div>
+                    <div class="video-content">{Video-500}</div> <!-- video at 500px wide -->
+                    
+                    {block:Caption} <!-- video caption -->
+                        <div class="caption">{Caption}</div>
+                    {/block:Caption}
+                </div>
+            {/block:Video}
+
+            {block:Link} <!-- block for a "LINK" post -->
+                <div> 
+                    <h3><a href="{URL}" class="link" {Target}>{Name}</a></h3>
+
+                    {block:Description} <!--  my comments about the link -->
+                        <div class="description">{Description}</div>
+                    {/block:Description}
+                </div>
+            {/block:Link}
+
+            {block:HasTags} <!-- tags of the post. only display this if the post has tags. -->
+                <div class="post-tags-container">
+                    <h4>Tags: </h4>
+                        {block:Tags}
+                        <span class="tag-names">{Tag}</span>
+                    {/block:Tags}
+                </div>
+            {/block:HasTags}
+
+
+            <!-- Small date -->
+            <div class="details-below-post details-below-post-tiny-font details-below-post-first-item"> 
+                {block:Date} 
+                    Posted {TimeAgo} <!-- shows how long ago date of the post is -->
                 {/block:Date}
             </div>
 
-            <div class="post-right-div">
-            
-                <div>
-                    {block:Title} <!-- Title of the post -->
-                    <!-- with link to full post wrapping title -->
-                        <h3><a href="{Permalink}" class="title-link">{Title}</a></h3> 
-                    {/block:Title}
-                
-                    {block:RebloggedFrom}<!-- block for a "REBLOG" post -->
-                        <p>Reblogged from: {ReblogParentName}</p>
-                        <p>Original post by: {ReblogRootName}</p>
-                    {/block:RebloggedFrom}
-                </div>
+            <!-- Permalink -->
+            <div class="details-below-post details-below-post-tiny-font">
+                <a href="{Permalink}">Permalink</a>
+            </div>
 
-                {block:Text} <!-- block for a "TEXT" post -->
-                    <div>
-                        {Body} <!-- Content / body of the post / preview only. -->
-                         <p class="read_more_lindsay_override">
-                            {block:More}
-                                <a href="{Permalink}">Continue Reading <i class="chevron circle right icon"></i></a>
-                            {/block:More}
-                        </p>
-                    </div>
-                {/block:Text}
-                
-                {block:Video} <!-- block for a "VIDEO" post -->
-                    <div>
-                        <div class="video-content">{Video-500}</div> <!-- video at 500px wide -->
-                        
-                        {block:Caption} <!-- video caption -->
-                            <div class="caption">{Caption}</div>
-                        {/block:Caption}
-                    </div>
-                {/block:Video}
+            <!-- Like button -->
+            <div class="details-below-post">{LikeButton color="grey"}</div>
 
-                {block:Link} <!-- block for a "LINK" post -->
-                    <div> 
-                        <h3><a href="{URL}" class="link" {Target}>{Name}</a></h3>
+            <!-- Reblog button -->
+            <div class="details-below-post">{ReblogButton color="grey"}</div>
 
-                        {block:Description} <!--  my comments about the link -->
-                            <div class="description">{Description}</div>
-                        {/block:Description}
-                    </div>
-                {/block:Link}
+            <!-- Number of likes -->
+            <div class="details-below-post">
+                {block:Likes}
+                    {Likes}
+                {/block:Likes}
+            </div>
 
-                {block:HasTags} <!-- tags of the post. only display this if the post has tags. -->
-                    <div class="post-tags-container">
-                        <h4>Tags: </h4>
-                            {block:Tags}
-                            <span class="tag-names">{Tag}</span>
-                        {/block:Tags}
-                    </div>
-                {/block:HasTags}
+            <!-- Notes on post -->
+            <div class="details-below-post details-below-post-tiny-font">
+                {block:NoteCount}
+                    {NoteCountWithLabel}
+                    {PostNotes}
+                {/block:NoteCount}
+            </div>
 
-
-                <!-- Small date -->
-                <div class="details-below-post details-below-post-tiny-font details-below-post-first-item"> 
-                    {block:Date} 
-                        Posted {TimeAgo} <!-- shows how long ago date of the post is -->
-                    {/block:Date}
-                </div>
-
-                <!-- Permalink -->
-                <div class="details-below-post details-below-post-tiny-font">
-                    <a href="{Permalink}">Permalink</a>
-                </div>
-
-                <!-- Like button -->
-                <div class="details-below-post">{LikeButton color="grey"}</div>
-
-                <!-- Reblog button -->
-                <div class="details-below-post">{ReblogButton color="grey"}</div>
-
-                <!-- Number of likes -->
-                <div class="details-below-post">
-                    {block:Likes}
-                        {Likes}
-                    {/block:Likes}
-                </div>
-
-                <!-- Notes on post -->
-                <div class="details-below-post details-below-post-tiny-font">
-                    {block:NoteCount}
-                        {NoteCountWithLabel}
-                        {PostNotes}
-                    {/block:NoteCount}
-                </div>
-
-            </div> <!-- close <div class="post-right-div"> -->
-        
-        </div> <!-- close <div class="post-preview-container"> -->
+        </div> <!-- close <div class="post-right-div"> -->
     
     {/block:Posts}  
     </div>
