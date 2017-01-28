@@ -4,11 +4,17 @@
 <head>
 	<meta charset="utf-8">
 	<title>Lindsay Elia | Full Stack Web Developer in San Francisco, CA</title>
+    
+    <!-- Like this theme? Get the code to add to your own Tumblr at https://github.com/LindsayElia/tumblr-theme-portfolio-site -->
+
+    <!-- Description from Tumblr -->
+    {block:Description}
+        <meta name="description" content="{MetaDescription}" />
+    {/block:Description}
 
 	<!-- JavaScript -->
 	<!-- jquery CDN -->
 	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
-
 	
 	<!-- CSS -->
 	<!-- semantic ui CSS - ICONS ONLY -->
@@ -222,7 +228,7 @@ CENTER AREA - TUMBLR SPECIFIC
 }
 
 
-/***** post display / layout - mainly text posts *****/
+/***** posts display area *****/
 
 .post-preview-container {
     /*border: 2px solid green;*/
@@ -239,7 +245,7 @@ CENTER AREA - TUMBLR SPECIFIC
     padding-top: 50px;
 }
 
-ul, li {
+/*ul, li {
     list-style: none;
 }
 
@@ -257,10 +263,10 @@ ul, li {
     margin-left: 40px;
     margin-right: 40px;
     padding-bottom: 5px;
-}
+}*/
 
 
-/***** Date in Circle on Left of each post *****/
+/***** date in circle on left of each post *****/
 
 div.time-date-circle {
     height: 140px;
@@ -524,30 +530,24 @@ MEDIA QUERIES - FOOTER
 
 
 <div id="main-content-tumblr">
-
-    <!-- Description / blurb for the blog. -->
-    {block:Description}
-        <p id="description">{Description}</p>
-    {/block:Description}
     
-    <ol id="posts">
-        <!-- List ALL posts -->
-        <!-- Width for inline media in the post body. -->
-        {block:Posts}
+    <div>
+    {block:Posts} <!-- Listing of ALL posts -->
+        
         <div class="post-preview-container">
 
             <div class="post-left-div">
                 {block:Date} <!-- Date of the post -->
                     <div class="time-date-circle">
-                            <div class="day-offset">{DayOfMonthWithZero}</div>
-                            <div class="month-year-offset">{ShortMonth} {Year}</div>
+                        <div class="day-offset">{DayOfMonthWithZero}</div>
+                        <div class="month-year-offset">{ShortMonth} {Year}</div>
                      </div>
                 {/block:Date}
             </div>
 
             <div class="post-right-div">
             
-                <li>
+                <div>
                     {block:Title} <!-- Title of the post -->
                     <!-- with link to full post wrapping title -->
                         <h3><a href="{Permalink}" class="title-link">{Title}</a></h3> 
@@ -557,90 +557,88 @@ MEDIA QUERIES - FOOTER
                         <p>Reblogged from: {ReblogParentName}</p>
                         <p>Original post by: {ReblogRootName}</p>
                     {/block:RebloggedFrom}
-                </li>
+                </div>
 
                 {block:Text} <!-- block for a "TEXT" post -->
-                    <li>
+                    <div>
                         {Body} <!-- Content / body of the post / preview only. -->
                          <p class="read_more_lindsay_override">
                             {block:More}
                                 <a href="{Permalink}">Continue Reading <i class="chevron circle right icon"></i></a>
                             {/block:More}
                         </p>
-                    </li>
+                    </div>
                 {/block:Text}
                 
                 {block:Video} <!-- block for a "VIDEO" post -->
-                    <li>
+                    <div>
                         <div class="video-content">{Video-500}</div> <!-- video at 500px wide -->
                         
                         {block:Caption} <!-- video caption -->
                             <div class="caption">{Caption}</div>
                         {/block:Caption}
-                    </li>
+                    </div>
                 {/block:Video}
 
                 {block:Link} <!-- block for a "LINK" post -->
-                    <li> 
+                    <div> 
                         <h3><a href="{URL}" class="link" {Target}>{Name}</a></h3>
 
                         {block:Description} <!--  my comments about the link -->
                             <div class="description">{Description}</div>
                         {/block:Description}
-                    </li>
+                    </div>
                 {/block:Link}
 
                 {block:HasTags} <!-- tags of the post. only display this if the post has tags. -->
-                    <li class="post-tags-container">
+                    <div class="post-tags-container">
                         <h4>Tags: </h4>
                             {block:Tags}
                             <span class="tag-names">{Tag}</span>
                         {/block:Tags}
-                    </li>
+                    </div>
                 {/block:HasTags}
 
 
                 <!-- Small date -->
-                <li class="details-below-post details-below-post-tiny-font details-below-post-first-item"> 
+                <div class="details-below-post details-below-post-tiny-font details-below-post-first-item"> 
                     {block:Date} 
                         Posted {TimeAgo} <!-- shows how long ago date of the post is -->
                     {/block:Date}
-                </li>
+                </div>
 
                 <!-- Permalink -->
-                <li class="details-below-post details-below-post-tiny-font">
+                <div class="details-below-post details-below-post-tiny-font">
                     <a href="{Permalink}">Permalink</a>
-                </li>
+                </div>
 
                 <!-- Like button -->
-                <li class="details-below-post">{LikeButton color="grey"}</li>
+                <div class="details-below-post">{LikeButton color="grey"}</div>
 
                 <!-- Reblog button -->
-                <li class="details-below-post">{ReblogButton color="grey"}</li>
+                <div class="details-below-post">{ReblogButton color="grey"}</div>
 
                 <!-- Number of likes -->
-                <li class="details-below-post">
+                <div class="details-below-post">
                     {block:Likes}
                         {Likes}
                     {/block:Likes}
-                </li>
+                </div>
 
                 <!-- Notes on post -->
-                <li class="details-below-post details-below-post-tiny-font">
+                <div class="details-below-post details-below-post-tiny-font">
                     {block:NoteCount}
                         {NoteCountWithLabel}
                         {PostNotes}
                     {/block:NoteCount}
-                </li>
-
-
+                </div>
 
             </div> <!-- close <div class="post-right-div"> -->
         
         </div> <!-- close <div class="post-preview-container"> -->
-        {/block:Posts}
-        
-    </ol>
+    
+    {/block:Posts}  
+    </div>
     
     
     <div class="blog-navigation-container">
